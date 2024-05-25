@@ -9,7 +9,7 @@ import (
 	"google.golang.org/api/option"
 )
 
-func SendMessage(message string) (genai.Part, error) {
+func SendMessage(message string) (genai.Text, error) {
 	ctx := context.Background()
 	// Access your API key as an environment variable (see "Set up your API key" above)
 	client, err := genai.NewClient(ctx, option.WithAPIKey(os.Getenv("API_KEY")))
@@ -23,9 +23,9 @@ func SendMessage(message string) (genai.Part, error) {
 
 	resp, err := model.GenerateContent(ctx, genai.Text(message))
 	if err != nil {
-		return nil, err
+		return "", err
 	}
-	part := resp.Candidates[0].Content.Parts[0]
+	part := resp.Candidates[0].Content.Parts[0].(genai.Text)
 
 	return part, nil
 }
