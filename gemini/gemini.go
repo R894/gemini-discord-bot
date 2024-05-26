@@ -9,19 +9,35 @@ import (
 	"google.golang.org/api/option"
 )
 
-func SendMessage(message string) (genai.Text, error) {
+type Gemini struct {
+	ctx     context.Context
+	client  *genai.Client
+	Session *genai.ChatSession
+}
+
+func New() *Gemini {
 	ctx := context.Background()
-	// Access your API key as an environment variable (see "Set up your API key" above)
-	client, err := genai.NewClient(ctx, option.WithAPIKey(os.Getenv("API_KEY")))
+	apiKey := os.Getenv("API_KEY")
+	client, err := genai.NewClient(ctx, option.WithAPIKey(apiKey))
+	model := client.GenerativeModel("gemini-1.5-flash")
+	session := model.StartChat()
 	if err != nil {
 		log.Fatal(err)
 	}
-	defer client.Close()
 
-	// The Gemini 1.5 models are versatile and work with multi-turn conversations (like chat)
-	model := client.GenerativeModel("gemini-1.5-flash-latest")
+	return &Gemini{
+		ctx:     ctx,
+		client:  client,
+		Session: session,
+	}
+}
 
-	resp, err := model.GenerateContent(ctx, genai.Text(message))
+func (g *Gemini) Close() {
+	g.client.Close()
+}
+
+func (g *Gemini) SendMessage(message string) (genai.Text, error) {
+	resp, err := g.Session.SendMessage(g.ctx, genai.Text(message))
 	if err != nil {
 		return "", err
 	}

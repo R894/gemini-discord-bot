@@ -3,6 +3,7 @@ module github.com/R894/gemini-test
 go 1.22.2
 
 require (
+	github.com/bwmarrin/discordgo v0.28.1
 	github.com/google/generative-ai-go v0.12.0
 	github.com/joho/godotenv v1.5.1
 	google.golang.org/api v0.181.0
@@ -15,7 +16,6 @@ require (
 	cloud.google.com/go/auth/oauth2adapt v0.2.2 // indirect
 	cloud.google.com/go/compute/metadata v0.3.0 // indirect
 	cloud.google.com/go/longrunning v0.5.7 // indirect
-	github.com/bwmarrin/discordgo v0.28.1 // indirect
 	github.com/felixge/httpsnoop v1.0.4 // indirect
 	github.com/go-logr/logr v1.4.1 // indirect
 	github.com/go-logr/stdr v1.2.2 // indirect
