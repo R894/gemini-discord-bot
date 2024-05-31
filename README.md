@@ -1,4 +1,4 @@
-# ChatGPT Discord Bot
+# Gemini Discord Bot
 
 A Discord bot built in Go that uses Gemini's 1.5 Flash model to provide conversational AI capabilities.
 
@@ -42,11 +42,11 @@ A Discord bot built in Go that uses Gemini's 1.5 Flash model to provide conversa
 
 ## Configuration
 
-1. Create a `.env` file in the root directory and add your Discord Bot token and OpenAI API key:
+1. Create a `.env` file in the root directory and add your Discord Bot token and Gemini API key:
 
     ```env
     BOT_TOKEN=your-discord-bot-token
-    API_KEY=your-openai-api-key
+    API_KEY=your-gemini-api-key
     ```
 
 ## Running the Bot
@@ -70,11 +70,10 @@ Once the bot is running, you can interact with it on Discord. Use the configured
 
 Example:
 
-    ```
     !gen Hello, how are you?
-    ```
 
-The bot will respond using OpenAI's GPT-4 model.
+
+The bot will respond using Gemini's 1.5 model.
 
 ## License
 
